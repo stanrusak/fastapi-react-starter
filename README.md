@@ -45,13 +45,7 @@ npm install
 npm run dev
 ```
 
-If you are using VSCode, tasks are already configured in the `.vscode/tasks.json` file to run the backend, frontend, or both. You can also run them individually using the following commands: Ctrl+Shift+P > Tasks: Run Task > Start Backend |Start Frontend | Start App.
-
-### Running with Docker
-
-```sh
-docker-compose up --build
-```
+If you are using VSCode, tasks are already configured in the `.vscode/tasks.json` file to run the backend, frontend, or both. You can also run themy using the following commands: Ctrl+Shift+P > Tasks: Run Task > Start Backend | Start Frontend | Start App.
 
 ## Project Structure
 
