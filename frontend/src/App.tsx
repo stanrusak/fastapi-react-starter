@@ -34,17 +34,28 @@ function App() {
   if (error) return <div>Error: {error}</div>;
 
   return (
-    <div className="App">
-      <header className="App-header">
-        <h1>Fullstack App with FastAPI and React</h1>
-        {items.map((item) => (
-          <div key={item.id}>
-            <h2>{item.name}</h2>
-            <p>{item.description}</p>
-          </div>
-        ))}
+    <div className="min-h-screen font-sans bg-slate-900">
+      <header className="pt-16 pb-12 px-6 max-w-4xl mx-auto text-center">
+        <h1 className="text-3xl md:text-4xl font-bold mb-8 bg-gradient-to-r from-indigo-600 to-blue-500 text-transparent bg-clip-text">
+          Fullstack App with FastAPI and React
+        </h1>
       </header>
-      <main></main>
+
+      <main className="max-w-6xl mx-auto px-6 py-12">
+        <div className="grid gap-6 md:grid-cols-2">
+          {items.map((item) => (
+            <div
+              key={item.id}
+              className="bg-slate-700 rounded-lg shadow-md p-6 hover:shadow-lg transition-shadow duration-300 border border-gray-100"
+            >
+              <h2 className="text-xl font-semibold text-gray-200 mb-3">
+                {item.name}
+              </h2>
+              <p className="text-gray-400">{item.description}</p>
+            </div>
+          ))}
+        </div>
+      </main>
     </div>
   );
 }
