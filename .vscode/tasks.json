@@ -1,0 +1,55 @@
+{
+  "version": "2.0.0",
+  "tasks": [
+    {
+      "label": "Start Backend",
+      "type": "shell",
+      "command": "cd backend && poetry run uvicorn app.main:app --reload",
+      "isBackground": true,
+      "problemMatcher": [
+        {
+          "pattern": [
+            {
+              "regexp": ".*",
+              "file": 1,
+              "location": 2,
+              "message": 3
+            }
+          ],
+          "background": {
+            "activeOnStart": true,
+            "beginsPattern": ".*Uvicorn running on.*",
+            "endsPattern": ".*Uvicorn running on.*"
+          }
+        }
+      ]
+    },
+    {
+      "label": "Start Frontend",
+      "type": "shell",
+      "command": "cd frontend && npm run dev",
+      "isBackground": true,
+      "problemMatcher": [
+        {
+          "pattern": [
+            {
+              "regexp": ".*",
+              "file": 1,
+              "location": 2,
+              "message": 3
+            }
+          ],
+          "background": {
+            "activeOnStart": true,
+            "beginsPattern": ".*localhost:.*",
+            "endsPattern": ".*localhost:.*"
+          }
+        }
+      ]
+    },
+    {
+      "label": "Start App",
+      "dependsOn": ["Start Backend", "Start Frontend"]
+    }
+  ]
+}
