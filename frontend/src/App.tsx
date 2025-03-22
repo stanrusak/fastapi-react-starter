@@ -1,4 +1,10 @@
 import { useEffect, useState } from "react";
+import {
+  Card,
+  CardDescription,
+  CardHeader,
+  CardTitle,
+} from "./components/ui/card";
 
 const BACKEND_URL = import.meta.env.VITE_BACKEND_URL;
 
@@ -44,15 +50,15 @@ function App() {
       <main className="max-w-6xl mx-auto px-6 py-12">
         <div className="grid gap-6 md:grid-cols-2">
           {items.map((item) => (
-            <div
+            <Card
               key={item.id}
               className="bg-slate-700 rounded-lg shadow-md p-6 hover:shadow-lg transition-shadow duration-300 border border-gray-100"
             >
-              <h2 className="text-xl font-semibold text-gray-200 mb-3">
-                {item.name}
-              </h2>
-              <p className="text-gray-400">{item.description}</p>
-            </div>
+              <CardHeader>
+                <CardTitle className="text-slate-300">{item.name}</CardTitle>
+                <CardDescription>{item.description}</CardDescription>
+              </CardHeader>
+            </Card>
           ))}
         </div>
       </main>
