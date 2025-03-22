@@ -1,35 +1,52 @@
-import { useState } from 'react'
-import reactLogo from './assets/react.svg'
-import viteLogo from '/vite.svg'
-import './App.css'
+import { useEffect, useState } from "react";
 
-function App() {
-  const [count, setCount] = useState(0)
+const BACKEND_URL = import.meta.env.VITE_BACKEND_URL;
 
-  return (
-    <>
-      <div>
-        <a href="https://vite.dev" target="_blank">
-          <img src={viteLogo} className="logo" alt="Vite logo" />
-        </a>
-        <a href="https://react.dev" target="_blank">
-          <img src={reactLogo} className="logo react" alt="React logo" />
-        </a>
-      </div>
-      <h1>Vite + React</h1>
-      <div className="card">
-        <button onClick={() => setCount((count) => count + 1)}>
-          count is {count}
-        </button>
-        <p>
-          Edit <code>src/App.tsx</code> and save to test HMR
-        </p>
-      </div>
-      <p className="read-the-docs">
-        Click on the Vite and React logos to learn more
-      </p>
-    </>
-  )
+interface Item {
+  id: number;
+  name: string;
+  description: string;
 }
 
-export default App
+function App() {
+  const [items, setItems] = useState<Item[]>([]);
+  const [loading, setLoading] = useState(true);
+  const [error, setError] = useState<string | null>(null);
+
+  // Fetch items from the backend using async/await
+  useEffect(() => {
+    const fetchItems = async () => {
+      try {
+        const response = await fetch(`${BACKEND_URL}/api/items`);
+        const data = await response.json();
+        setItems(data);
+        setLoading(false);
+      } catch (error) {
+        setError(error as string);
+        setLoading(false);
+      }
+    };
+
+    fetchItems();
+  }, []);
+
+  if (loading) return <div>Loading...</div>;
+  if (error) return <div>Error: {error}</div>;
+
+  return (
+    <div className="App">
+      <header className="App-header">
+        <h1>Fullstack App with FastAPI and React</h1>
+        {items.map((item) => (
+          <div key={item.id}>
+            <h2>{item.name}</h2>
+            <p>{item.description}</p>
+          </div>
+        ))}
+      </header>
+      <main></main>
+    </div>
+  );
+}
+
+export default App;

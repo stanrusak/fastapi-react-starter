@@ -1,7 +1,7 @@
 [tool.poetry]
 name = "backend"
 version = "0.1.0"
-description = "CohortBuilder FastAPI Backend"
+description = "astAPI Backend"
 authors = ["Stanislav Rusak"]
 readme = "README.md"
 
