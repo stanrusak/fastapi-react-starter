@@ -1,6 +1,6 @@
 # Install Python dependencies
 Set-Location .\backend
-poetry install
+poetry install --no-root
 Set-Location ..
 
 # Install Node dependencies
